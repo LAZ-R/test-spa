@@ -5,7 +5,7 @@ export const renderView = () => {
     const header = document.getElementById('header');
 
     const headerIndexLink = LAZR.DOM.createElement('a', '', 'header-index-link', '');
-    headerIndexLink.setAttribute('href', './');
+    headerIndexLink.setAttribute('onclick', "navigateTo('./')");
 
     const headerLogo = LAZR.DOM.createImgElement('headerLogo', 'header-logo', './medias/images/logo-white.svg', 'lazr logo');
     LAZR.CSS.applyColorFilterOnElement(headerLogo, LAZR.CSS.getCssRootVariableValue('--on-primary'));

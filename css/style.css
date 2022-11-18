@@ -9,15 +9,18 @@
 
 html,
 body {
- padding: 0;
- margin: 0;
- height: 100vh; /* fallback for Js load */
- height: var(--doc-height);
- background-color: var(--html-background-color);
- font-family: 'Roboto-Regular';
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 100vh; /* fallback for Js load */
+    height: var(--doc-height);
+    background-color: var(--html-background-color);
+    font-family: 'Roboto-Regular';
+    display: flex;
+    flex-direction: column;
 }
 
-main {
+main, .pseudo-main {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -28,6 +31,7 @@ main {
     margin: 0;
     padding: 0;
     color: var(--font-color-default);
+    transition: opacity .2s linear;
 }
 
 /* ==========================

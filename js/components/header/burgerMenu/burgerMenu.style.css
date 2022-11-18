@@ -27,6 +27,7 @@
 }
 
 .burger-menu-background {
+    position: relative;
     box-sizing: border-box;
     position: fixed;
     display: none;
@@ -37,9 +38,12 @@
     background-color: black;
     opacity: 0%;
     transition: opacity .2s linear;
+    z-index: 2;
 }
 
 .burger-menu {
+    position: relative;
+    z-index: 3;
     box-sizing: border-box;
     position: fixed;
     display: flex;

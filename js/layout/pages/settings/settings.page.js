@@ -1,24 +1,33 @@
+import * as BurgerMenu from '../../../components/header/burgerMenu/burgerMenu.component.js';
+import { getStack } from '../../../lazR/core/router/router.js';
 import * as LAZR from '../../../lazR/lazR.js';
 
-let user = LAZR.STORAGE.getUser();
-let settings = user.settings;
+
 
 const handleCheck = (id) => {
+    console.log('handle check ' + id);
+    let user = LAZR.STORAGE.getUser();
+    console.log(`user from storage before modification :`);
+    console.log(user);
+    console.log(document.getElementById(`${id}`).checked);
+
     let shoudlRefresh = false;
-    settings.forEach(settingsGroups => {
+    user.settings.forEach(settingsGroups => {
         settingsGroups.settings.forEach(setting => {
-            if (setting.id == id) {
+            if (`${setting.id}${getStack()}`== id) {
                 setting.isActive = document.getElementById(id).checked;
                 if (setting.id == 'jsonWizard') shoudlRefresh = true;
             }
         });
     });
-    user.settings = settings;
+
+    console.log(`user after modification :`);
+    console.log(user);
     LAZR.STORAGE.setUser(user);
+    console.log(`user from storage afer save : `);
+    console.log(LAZR.STORAGE.getUser());
     if (shoudlRefresh) {
-        setTimeout(() => {
-            window.location = './?page=settings';
-        }, 300);
+        BurgerMenu.refresh();
     }
 };
 window.handleCheck = handleCheck;
@@ -35,9 +44,9 @@ const renderSettingsGroup = (settingsGroup) => {
                 <span class="setting-label">${setting.name}</span>
             </div>
             <div class="setting-switch-area">
-                <label class="switch">
-                    <input id="${setting.id}" type="checkbox"
-                        onclick="handleCheck('${setting.id}')" ${setting.isActive ? "checked" : ""} />
+                <label class="switch" for="${setting.id}${getStack()}">
+                    <input id="${setting.id}${getStack()}" type="checkbox"
+                        onclick="handleCheck('${setting.id}${getStack()}')" ${setting.isActive ? "checked" : ""} />
                     <span class="slider round"></span>
                 </label>
             </div>    
@@ -47,13 +56,16 @@ const renderSettingsGroup = (settingsGroup) => {
     return str;
 }
 
-export const renderPage = () => {
 
+export const renderPage = () => {
+    let user = LAZR.STORAGE.getUser();
+    console.log(`user from storage from render :`);
+    console.log(user);
     LAZR.DOM.setHTMLTitle('Settings');
 
     const page = LAZR.DOM.createElement('div', 'settingsPage', 'page', `
         <h1 style="padding-left: var(--horizontal-padding)">Settings</h1>`);
-    settings.forEach(settingsGroup => {
+        user.settings.forEach(settingsGroup => {
         if ((settingsGroup.name == 'Advanced' && LAZR.STORAGE.isUserDev()) || settingsGroup.name != 'Advanced') {
             page.appendChild(LAZR.DOM.getElementFromHTMLString(renderSettingsGroup(settingsGroup)));
         }

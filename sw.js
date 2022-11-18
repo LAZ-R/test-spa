@@ -1,4 +1,4 @@
-var cacheName = 'LAZR-TEMPLATE';
+var cacheName = 'TEST-SPA';
 var filesToCache = [
   './',
   './index.html',
@@ -25,4 +25,4 @@ self.addEventListener('fetch', function(e) {
   );
 });
 
-const version = '0.0.9';
+const version = '0.0.1';

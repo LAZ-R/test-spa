@@ -1,5 +1,5 @@
 const STORAGE = localStorage;
-const appShortName = 'lzrTmplt';
+const appShortName = 'testPWA';
 
 if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
     STORAGE.setItem(`${appShortName}FirstTime`, '0');

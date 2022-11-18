@@ -1,4 +1,5 @@
 import * as LAZR from '../../../lazR/lazR.js';
+import * as ROUTER from '../../../lazR/core/router/router.js'
 
 let isMenuVisible = false;
 const onPrimaryFilter = LAZR.CSS.getFilterStringForHexValue(LAZR.CSS.getCssRootVariableValue('--on-primary'));
@@ -42,7 +43,7 @@ const openMenu = () => {
 
 let versionNumberClick = 0;
 
-const handleVersionNumberClick = () => {
+const handleVersionNumberClick = () => { 
     versionNumberClick += 1;
     if (versionNumberClick == 6) {
         if (!LAZR.STORAGE.isUserDev()) {
@@ -56,10 +57,18 @@ const handleVersionNumberClick = () => {
             LAZR.STORAGE.setUser(user);
             window.alert('You now lose access to the "Advanced" settings section');
         }
-        window.location = `./?page=settings`;
+        closeMenu();
+        ROUTER.navigateTo(`./?page=settings`);
+        versionNumberClick = 0;
     }
 }
 window.handleVersionNumberClick = handleVersionNumberClick;
+
+const burgerNavigateTo = (URL) => {
+    closeMenu();
+    ROUTER.navigateTo(URL);
+}
+window.burgerNavigateTo = burgerNavigateTo;
 
 export const renderView = () => {
 
@@ -76,24 +85,24 @@ export const renderView = () => {
 
     const burgerMenu = LAZR.DOM.createElement('div', 'burgerMenu', 'burger-menu', `
         <div class="burger-menu-pages">
-            <a href="./" class="burger-menu-page">Home</a>
+            <a onclick="burgerNavigateTo('./')" class="burger-menu-page">Home</a>
         </div>
         <div class="burger-menu-bottom">
             <div class="burger-menu-utils">   
                 ${LAZR.STORAGE.getUserSetting('jsonWizard').isActive ? `
-                <a href="./?page=jsonWizard" class="burger-menu-page burger-menu-util">
+                <a onclick="burgerNavigateTo('./?page=jsonWizard')" class="burger-menu-page burger-menu-util">
                     <div class="util-icon-area">
                         <img class="util-icon" src="./medias/images/font-awsome/wand-magic-sparkles-solid.svg" alt="a magic wand with sparkles" style="filter: ${onPrimaryFilter};" />
                     </div>                    
                     <span>JSON Wizard</span>
                 </a>` : ''}
-                <a href="./?page=settings" class="burger-menu-page burger-menu-util">
+                <a onclick="burgerNavigateTo('./?page=settings')" class="burger-menu-page burger-menu-util">
                     <div class="util-icon-area">
                         <img class="util-icon" src="./medias/images/font-awsome/gear-solid.svg" alt="gear" style="filter: ${onPrimaryFilter};" />
                     </div>                    
                     <span>Settings</span>
                 </a>
-                <a href="./?page=about" class="burger-menu-page burger-menu-util">
+                <a onclick="burgerNavigateTo('./?page=about')" class="burger-menu-page burger-menu-util">
                     <div class="util-icon-area">
                         <img class="util-icon" src="./medias/images/font-awsome/circle-info-solid.svg" alt="information mark" style="filter: ${onPrimaryFilter};" />
                     </div>                    
@@ -106,4 +115,39 @@ export const renderView = () => {
             </div>
         </div>`);
     document.getElementById('body').appendChild(burgerMenu);
+}
+
+export const refresh = () => {
+    const burgerMenu = document.getElementById('burgerMenu');
+    burgerMenu.innerHTML = `
+    <div class="burger-menu-pages">
+        <a onclick="burgerNavigateTo('./')" class="burger-menu-page">Home</a>
+    </div>
+    <div class="burger-menu-bottom">
+        <div class="burger-menu-utils">   
+            ${LAZR.STORAGE.getUserSetting('jsonWizard').isActive ? `
+            <a onclick="burgerNavigateTo('./?page=jsonWizard')" class="burger-menu-page burger-menu-util">
+                <div class="util-icon-area">
+                    <img class="util-icon" src="./medias/images/font-awsome/wand-magic-sparkles-solid.svg" alt="a magic wand with sparkles" style="filter: ${onPrimaryFilter};" />
+                </div>                    
+                <span>JSON Wizard</span>
+            </a>` : ''}
+            <a onclick="burgerNavigateTo('./?page=settings')" class="burger-menu-page burger-menu-util">
+                <div class="util-icon-area">
+                    <img class="util-icon" src="./medias/images/font-awsome/gear-solid.svg" alt="gear" style="filter: ${onPrimaryFilter};" />
+                </div>                    
+                <span>Settings</span>
+            </a>
+            <a onclick="burgerNavigateTo('./?page=about')" class="burger-menu-page burger-menu-util">
+                <div class="util-icon-area">
+                    <img class="util-icon" src="./medias/images/font-awsome/circle-info-solid.svg" alt="information mark" style="filter: ${onPrimaryFilter};" />
+                </div>                    
+                <span>About</span>
+            </a>
+        </div>
+        <div class="burger-menu-app-data">
+            <span style="user-select: none;" onclick="handleVersionNumberClick()">v${LAZR.APP_DATA.getAppVersionNumber()}</span>
+            <span>&copy; ${new Date().getFullYear()} • laz_R</span>
+        </div>
+    </div>`
 }
