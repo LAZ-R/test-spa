@@ -1,0 +1,79 @@
+/* Put here any 'header' specific css */
+
+header {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    min-width: 100%;
+    margin: 0;
+    padding: 0 var(--horizontal-padding) 0 var(--horizontal-padding);
+    background-color: var(--primary);
+    color: var(--font-color-header);
+}
+
+.header-index-link {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.header-logo {
+    height: 65%;
+}
+
+/* ==========================
+ MEDIA QUERIES
+========================== */
+
+/* Tablets ----------- */
+@media (min-width : 767px) and (max-width : 1279px) {
+    :root {
+        --header-height: var(--tablet-header-height);
+    }
+}
+
+/* Laptops and up ----------- */
+
+.header-links-group {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+.header-link {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 10% 0 10%;
+    border-bottom: none;
+    color: var(--font-color-header);
+}
+    .header-link:hover {
+        text-decoration: none;
+        background-color: var(--primary-hover);
+    }
+    .header-link:focus {
+        text-decoration: none;
+        background-color: var(--primary-hover);
+    }
+
+
+@media (min-width : 1280px) and (max-width : 1919px) {
+    :root {
+        --header-height: var(--laptop-header-height);
+    }
+}
+
+/* Desktops ----------- */
+@media (min-width: 1920px) {
+    :root {
+        --header-height: var(--desktop-header-height);
+    }
+}
