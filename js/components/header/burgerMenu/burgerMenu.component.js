@@ -2,9 +2,12 @@ import * as LAZR from '../../../lazR/lazR.js';
 import * as ROUTER from '../../../lazR/core/router/router.js'
 
 let isMenuVisible = false;
+export const menuIsVisible = () => {
+    return isMenuVisible;
+}
 const onPrimaryFilter = LAZR.CSS.getFilterStringForHexValue(LAZR.CSS.getCssRootVariableValue('--on-primary'));
 
-const closeMenu = () => {
+export const closeMenu = () => {
     document.getElementById('burgerMenuBackground').style.opacity = '0%';
     
     document.getElementById('headerBurgerMenuButton').style.opacity = '0%';

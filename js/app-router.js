@@ -3,7 +3,7 @@ import * as PAGE_ABOUT from './layout/pages/about/about.page.js'
 import * as PAGE_JSON_WIZARD from './layout/pages/jsonWizard/jsonWizard.page.js'
 import * as PAGE_SETTINGS from './layout/pages/settings/settings.page.js'
 
-const music = new Audio('./medias/01 - Mokhov - Halcyon Days.mp3');
+import { music } from './app.js'
 
 export const pushView = (parentComponent, page) => {
     switch (page) {

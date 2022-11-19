@@ -3,6 +3,10 @@
 @import url("../js/layout/pages/pages.css");
 @import url("../js/components/components.css");
 
+span {
+    user-select: none;
+}
+
 /* ==========================
  MAIN CONTAINERS
 ========================== */

@@ -5,11 +5,7 @@ import * as LAZR from '../../../lazR/lazR.js';
 
 
 const handleCheck = (id) => {
-    console.log('handle check ' + id);
     let user = LAZR.STORAGE.getUser();
-    console.log(`user from storage before modification :`);
-    console.log(user);
-    console.log(document.getElementById(`${id}`).checked);
 
     let shoudlRefresh = false;
     user.settings.forEach(settingsGroups => {
@@ -21,11 +17,7 @@ const handleCheck = (id) => {
         });
     });
 
-    console.log(`user after modification :`);
-    console.log(user);
     LAZR.STORAGE.setUser(user);
-    console.log(`user from storage afer save : `);
-    console.log(LAZR.STORAGE.getUser());
     if (shoudlRefresh) {
         BurgerMenu.refresh();
     }
@@ -59,8 +51,6 @@ const renderSettingsGroup = (settingsGroup) => {
 
 export const renderPage = () => {
     let user = LAZR.STORAGE.getUser();
-    console.log(`user from storage from render :`);
-    console.log(user);
     LAZR.DOM.setHTMLTitle('Settings');
 
     const page = LAZR.DOM.createElement('div', 'settingsPage', 'page', `

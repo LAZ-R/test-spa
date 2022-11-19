@@ -20,24 +20,20 @@ export const getStack = () => {
 }
 
 export const navigateTo = (URL) => {
-    if ((window.location.hash.length == 0 && URL == './') || window.location.hash == '#' + URL) {
-        console.log('no change');
-    } else {
+    if (!((window.location.hash.length == 0 && URL == './') || window.location.hash == '#' + URL)) {
         window.innerDocClick = true;
-        console.log(`navigateTo ${URL}`);
         historyArray.push(window.location.hash);
-        console.log(historyArray);
         window.location.hash = URL;
         // the rest happens on the onHashChange function
     }
+    // else user is trying to navigate to the page he is already on.
 }
 window.navigateTo = navigateTo;
 
 window.onhashchange = function() {
-    console.log('On hash change');
-    if (window.innerDocClick) {
 
-        // App navigation
+    if (window.innerDocClick) {
+        // App navigation, always forward
 
         window.innerDocClick = false;
         let pageArray = window.location.hash.match(getPageRegex);
@@ -47,34 +43,31 @@ window.onhashchange = function() {
         } else {
             navigate(null, true, false);
         } 
+
     } else {
-        // Browser navigation
-        if (window.location.hash != '#undefined') {
-            console.log('back');
-            window.location.hash = historyArray[historyArray.length-1];
-    
-            if (window.location.hash.length != 0) {
-                let pageArray = window.location.hash.match(getPageRegex);
-                if (pageArray != null) {
-                    const page = pageArray[0];
-                    navigate(page, false);
-                } else {
-                    console.log('backward to accueil');
-                    navigate(null, false, false);
-                } 
-            } else {
-                console.log('backward to ROOT');
-                navigate(null, false, true);
-            }
-            historyArray.pop();
-        } else {
-            console.log('backward to ROOT');
+        // Browser navigation, always backwards
+
+        if (window.location.hash == '') {
+            // BACK TO ROOT STACK
             navigate(null, false, true);
+        } else {
+            window.location.hash = historyArray[historyArray.length-1];
+            if (window.location.hash == '#./') {
+                // BACK TO HOME BUT NOT IS NOT ROOT STACK
+                navigate(null, false, false);
+            } else {
+                // BACK TO ANOTHER PAGE
+                let pageArray = window.location.hash.match(getPageRegex);
+                const page = pageArray[0];
+                navigate(page, false), false;
+            }
         }
+        historyArray.pop();
+        //console.log(historyArray);
     }
 }
 
-const navigate = (page, isGoingForward, isRootPage) => {
+export const navigate = (page, isGoingForward, isRootPage) => {
     let main;
     if (isGoingForward) {
         let currentMain = document.getElementById('main');
@@ -107,22 +100,25 @@ const navigate = (page, isGoingForward, isRootPage) => {
         currentMain.setAttribute('id', '');
 
         let oldMain = document.getElementById(`oldMain${stack - 1}`);
-        oldMain.setAttribute('id', 'main');
+        if (oldMain != null) {
+            oldMain.setAttribute('id', 'main');
     
-        oldMain.classList.remove('hidden-old-main');
-        if (isRootPage) {
-            oldMain.classList.add('pseudo-main');
-            historyArray = [];
-        } else {
-            oldMain.classList.add('sliding-page');
+            oldMain.classList.remove('hidden-old-main');
+            if (isRootPage) {
+                oldMain.classList.add('pseudo-main');
+                historyArray = [];
+            } else {
+                oldMain.classList.add('sliding-page');
+            }
+    
+            currentMain.style.top = '100%';
+            currentMain.style.opacity = 0;
+            setTimeout(() => {
+                currentMain.remove();
+            }, 300);
+    
+            stack -= 1
         }
-
-        currentMain.style.top = '100%';
-        currentMain.style.opacity = 0;
-        setTimeout(() => {
-            currentMain.remove();
-        }, 300);
-
-        stack -= 1
+        
     }     
 }
