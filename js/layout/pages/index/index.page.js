@@ -1,14 +1,12 @@
 import * as LAZR from '../../../lazR/lazR.js';
 
+const logHelloWorld = (number) => {
+    console.log(`Hello world n°${number}`);
+    window.alert(`Hello World n°${number}`)
+}
+window.logHelloWorld = logHelloWorld;
+
 export const renderPage = () => {
-
-    const logHelloWorld = (number) => {
-        console.log(`Hello world n°${number}`);
-        window.alert(`Hello World n°${number}`)
-    }
-    window.logHelloWorld = logHelloWorld;
-
-    /* --------------------------------------------------------------------- */
     const pageTitle = LAZR.APP_DATA.getAppName();
     LAZR.DOM.setHTMLTitle(pageTitle);
 
@@ -32,13 +30,12 @@ export const renderPage = () => {
             secondaryButton.setAttribute('onclick', 'logHelloWorld(2)');
             page.appendChild(LAZR.DOM.getElementFromHTMLString(`
                 <div style="display:flex;justify-content:space-evenly;width: 100%">
-                <button class="primary-button" onclick="logHelloWorld(1)">Hello World 1</button>
-                ${secondaryButton.outerHTML}
-            </div>`))
+                    <button class="primary-button" onclick="logHelloWorld(1)">Hello World 1</button>
+                    ${secondaryButton.outerHTML}
+                </div>`));
         }
     }
     page.style.padding = '0px var(--horizontal-padding)';
-    /* --------------------------------------------------------------------- */
     
     return page;
 }

@@ -1,5 +1,5 @@
 const STORAGE = localStorage;
-const appShortName = 'testPWA';
+const appShortName = 'testSPA';
 
 if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
     STORAGE.setItem(`${appShortName}FirstTime`, '0');
@@ -19,6 +19,17 @@ if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
             },
             {
                 id: 2,
+                name: 'Audio',
+                settings: [
+                    {
+                        id: 'menuMusic',
+                        name: 'Music (menu)',
+                        isActive: true
+                    }
+                ]
+            },
+            {
+                id: 3,
                 name: 'Advanced',
                 settings: [
                     {

@@ -1,8 +1,7 @@
 import * as BurgerMenu from '../../../components/header/burgerMenu/burgerMenu.component.js';
 import { getStack } from '../../../lazR/core/router/router.js';
 import * as LAZR from '../../../lazR/lazR.js';
-
-
+import { music } from '../../../app.js';
 
 const handleCheck = (id) => {
     let user = LAZR.STORAGE.getUser();
@@ -13,13 +12,26 @@ const handleCheck = (id) => {
             if (`${setting.id}${getStack()}`== id) {
                 setting.isActive = document.getElementById(id).checked;
                 if (setting.id == 'jsonWizard') shoudlRefresh = true;
+                if (setting.id == 'menuMusic') {
+                    if (setting.isActive) {
+                        if (music.duration > 0 && !music.paused) {
+                            console.log('Music is aldrady playing');
+                        } else {
+                            music.play();
+                        }
+                    } else {
+                        if (music.duration > 0 && !music.paused) {
+                            music.pause();
+                        }
+                    }
+                } 
             }
         });
     });
 
     LAZR.STORAGE.setUser(user);
     if (shoudlRefresh) {
-        BurgerMenu.refresh();
+        BurgerMenu.refreshBurgerMenu();
     }
 };
 window.handleCheck = handleCheck;

@@ -64,6 +64,7 @@ button {
     display: flex;
     font-family: Roboto-Medium;
     border: 1px solid var(--gray-10);
+    border-radius: var(--button-border-radius);
     background-color: var(--gray-10);
     padding: 2% 5% 2% 5%;
     margin: 0;
