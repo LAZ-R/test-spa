@@ -1,4 +1,4 @@
-import * as FILTER from './filter/filter.js'
+import * as FILTER from './filter/filter.js';
 
 export const applyColorFilterOnElement = (element, hexValue) => {
     element.setAttribute('style', `filter: ${FILTER.getFilterStringForHexValue(hexValue)}`);

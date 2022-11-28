@@ -1,10 +1,11 @@
-import * as CORE_MATHS from './core/maths/maths.js'
-import * as CORE_DOM from './core/DOM/DOM.js'
-import * as CORE_CSS from './core/css/css.js'
-import * as CORE_APP_DATA from './core/appData/appData.js'
-import * as CORE_STORAGE from './core/storage/storage.js'
-import * as CORE_URL from './core/URL/URL.js'
-import * as CORE_WAKE_LOCK from './core/wakeLock.js'
+import * as CORE_APP_DATA from './core/appData/appData.js';
+import * as CORE_CSS from './core/css/css.js';
+import * as CORE_DOM from './core/DOM/DOM.js';
+import * as CORE_MATHS from './core/maths/maths.js';
+import * as CORE_ROUTER from './core/router/router.js';
+import * as CORE_STORAGE from './core/storage/storage.js';
+import * as CORE_URL from './core/URL/URL.js';
+import * as CORE_WAKE_LOCK from './core/wakeLock.js';
 
 /* APP Data */
 export const APP_DATA = {
@@ -42,6 +43,12 @@ export const MATHS = {
     getRandomIntegerBetween: (min, max) => CORE_MATHS.getRandomIntegerBetween(min, max),
     roundTo: (n, digits) => CORE_MATHS.roundTo(n, digits)
 };
+
+/* Router */
+export const ROUTER = {
+    navigateTo: (URL) => CORE_ROUTER.navigateTo(URL),
+    navigateForward: (page) => CORE_ROUTER.navigateForward(page)
+}
 
 /* Storage */
 export const STORAGE = {

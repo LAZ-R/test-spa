@@ -1,4 +1,4 @@
-import './filterMagic.js'
+import './filterMagic.js';
 import { hexToRgb, Color, Solver } from './filterMagic.js';
 
 export const getFilterStringForHexValue = (hexValue) => {

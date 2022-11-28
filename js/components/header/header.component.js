@@ -1,4 +1,3 @@
-import { navigateTo } from '../../lazR/core/router/router.js';
 import * as LAZR from '../../lazR/lazR.js';
 import * as BURGER_MENU from './burgerMenu/burgerMenu.component.js';
 
@@ -6,7 +5,7 @@ const headerNavigateTo = (URL) => {
     if (BURGER_MENU.menuIsVisible()) {
         BURGER_MENU.closeMenu();
     }
-    navigateTo(URL);
+    LAZR.ROUTER.navigateTo(URL);
 }
 window.headerNavigateTo = headerNavigateTo;
 

@@ -1,4 +1,4 @@
-import * as APP_ROUTER from '../../../app-router.js'
+import * as APP_ROUTER from '../../../app-router.js';
 
 const getPageRegex = /(?<=page=)\w+/g;
 

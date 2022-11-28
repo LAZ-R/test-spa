@@ -1,11 +1,13 @@
 import * as LAZR from '../../../lazR/lazR.js';
-import * as ROUTER from '../../../lazR/core/router/router.js'
 
 let isMenuVisible = false;
 export const menuIsVisible = () => {
     return isMenuVisible;
 }
-const onPrimaryFilter = LAZR.CSS.getFilterStringForHexValue(LAZR.CSS.getCssRootVariableValue('--on-primary'));
+
+const getOnPrimaryFilter = () => {
+    return LAZR.CSS.getFilterStringForHexValue(LAZR.CSS.getCssRootVariableValue('--on-primary'));
+}
 
 export const closeMenu = () => {
     document.getElementById('burgerMenuBackground').style.opacity = '0%';
@@ -13,7 +15,7 @@ export const closeMenu = () => {
     document.getElementById('headerBurgerMenuButton').style.opacity = '0%';
     setTimeout(() => {
         document.getElementById('headerBurgerMenuButton').innerHTML = `
-            <img src="./medias/images/font-awsome/bars-solid.svg" class="burger-menu-header-button-icon" style="filter: ${onPrimaryFilter};" />`;
+            <img src="./medias/images/font-awsome/bars-solid.svg" class="burger-menu-header-button-icon" style="filter: ${getOnPrimaryFilter()};" />`;
         document.getElementById('headerBurgerMenuButton').style.opacity = '100%';
     }, 100);
     
@@ -35,7 +37,7 @@ const openMenu = () => {
     document.getElementById('headerBurgerMenuButton').style.opacity = '0%';
     setTimeout(() => {
         document.getElementById('headerBurgerMenuButton').innerHTML = `
-            <img src="./medias/images/font-awsome/xmark-solid.svg" class="burger-menu-header-button-icon" style="filter: ${onPrimaryFilter}" />`;
+            <img src="./medias/images/font-awsome/xmark-solid.svg" class="burger-menu-header-button-icon" style="filter: ${getOnPrimaryFilter()}" />`;
         document.getElementById('headerBurgerMenuButton').style.opacity = '100%';
     }, 100);
     
@@ -61,7 +63,7 @@ const handleVersionNumberClick = () => {
             window.alert('You now lose access to the "Advanced" settings section');
         }
         closeMenu();
-        ROUTER.navigateTo(`./?page=settings`);
+        LAZR.ROUTER.navigateTo(`./?page=settings`);
         versionNumberClick = 0;
         refreshBurgerMenu();
     }
@@ -70,7 +72,7 @@ window.handleVersionNumberClick = handleVersionNumberClick;
 
 const burgerNavigateTo = (URL) => {
     closeMenu();
-    ROUTER.navigateTo(URL);
+    LAZR.ROUTER.navigateTo(URL);
 }
 window.burgerNavigateTo = burgerNavigateTo;
 
@@ -84,19 +86,19 @@ const getBurgerMenuInnerHTML = () => {
             ${(LAZR.STORAGE.isUserDev() && LAZR.STORAGE.getUserSetting('jsonWizard').isActive) ? `
             <a onclick="burgerNavigateTo('./?page=jsonWizard')" class="burger-menu-page burger-menu-util">
                 <div class="util-icon-area">
-                    <img class="util-icon" src="./medias/images/font-awsome/wand-magic-sparkles-solid.svg" alt="a magic wand with sparkles" style="filter: ${onPrimaryFilter};" />
+                    <img class="util-icon" src="./medias/images/font-awsome/wand-magic-sparkles-solid.svg" alt="a magic wand with sparkles" style="filter: ${getOnPrimaryFilter()};" />
                 </div>                    
                 <span>JSON Wizard</span>
             </a>` : ''}
             <a onclick="burgerNavigateTo('./?page=settings')" class="burger-menu-page burger-menu-util">
                 <div class="util-icon-area">
-                    <img class="util-icon" src="./medias/images/font-awsome/gear-solid.svg" alt="gear" style="filter: ${onPrimaryFilter};" />
+                    <img class="util-icon" src="./medias/images/font-awsome/gear-solid.svg" alt="gear" style="filter: ${getOnPrimaryFilter()};" />
                 </div>                    
                 <span>Settings</span>
             </a>
             <a onclick="burgerNavigateTo('./?page=about')" class="burger-menu-page burger-menu-util">
                 <div class="util-icon-area">
-                    <img class="util-icon" src="./medias/images/font-awsome/circle-info-solid.svg" alt="information mark" style="filter: ${onPrimaryFilter};" />
+                    <img class="util-icon" src="./medias/images/font-awsome/circle-info-solid.svg" alt="information mark" style="filter: ${getOnPrimaryFilter()};" />
                 </div>                    
                 <span>About</span>
             </a>
@@ -111,7 +113,7 @@ const getBurgerMenuInnerHTML = () => {
 export const renderView = () => {
     const headerBurgerMenuButtonArea = LAZR.DOM.createElement('div', 'headerBurgerMenuButtonArea', 'header-burger-menu-button-area', ``);
     const headerBurgerMenuButton = LAZR.DOM.createElement('button', 'headerBurgerMenuButton', 'header-burger-menu-button', `
-        <img src="./medias/images/font-awsome/bars-solid.svg" class="burger-menu-header-button-icon" style="filter: ${onPrimaryFilter};" />`);
+        <img src="./medias/images/font-awsome/bars-solid.svg" class="burger-menu-header-button-icon" style="filter: ${getOnPrimaryFilter()};" />`);
     headerBurgerMenuButton.onclick = () => isMenuVisible ? closeMenu() : openMenu();
     headerBurgerMenuButtonArea.appendChild(headerBurgerMenuButton);
     document.getElementById('header').appendChild(headerBurgerMenuButtonArea);

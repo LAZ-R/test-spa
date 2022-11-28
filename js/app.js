@@ -1,7 +1,6 @@
 import { renderLayout } from './layout/layout.js';
 import * as LAZR from './lazR/lazR.js';
-import * as PAGE_INDEX from './layout/pages/index/index.page.js'
-import * as ROUTER from './lazR/core/router/router.js'
+import * as PAGE_INDEX from './layout/pages/index/index.page.js';
 
 const getPageRegex = /(?<=page=)\w+/g;
 export const music = new Audio('./medias/audio/music/Mokhov_Halcyon_Days.mp3');
@@ -25,8 +24,8 @@ if (window.location.hash.length == 0) {
     let pageArray = window.location.hash.match(getPageRegex);
     if (pageArray != null) {
         const page = pageArray[0];
-        ROUTER.navigateForward(page);
+        LAZR.ROUTER.navigateForward(page);
     } else { 
-        ROUTER.navigateForward(null);
+        LAZR.ROUTER.navigateForward(null);
     }
 }
