@@ -3,6 +3,10 @@ import * as PAGE_ABOUT from './layout/pages/about/about.page.js';
 import * as PAGE_SETTINGS from './layout/pages/settings/settings.page.js';
 import * as PAGE_JSON_WIZARD from './layout/pages/jsonWizard/jsonWizard.page.js';
 
+// Constants ------------------------------------------------------------------
+
+// Methods --------------------------------------------------------------------
+
 export const pushView = (parentComponent, page) => {
     switch (page) {
         case 'about':
@@ -19,3 +23,5 @@ export const pushView = (parentComponent, page) => {
             break;
     } 
 }
+
+// Execution ------------------------------------------------------------------

@@ -2,9 +2,13 @@ import { renderLayout } from './layout/layout.js';
 import * as LAZR from './lazR/lazR.js';
 import * as PAGE_INDEX from './layout/pages/index/index.page.js';
 
+// Constants ------------------------------------------------------------------
+
 const getPageRegex = /(?<=page=)\w+/g;
 export const music = new Audio('./medias/audio/music/Mokhov_Halcyon_Days.mp3');
 music.loop = true;
+
+// Methods --------------------------------------------------------------------
 
 const renderAppHome = () => {
     document.getElementById('main').appendChild(PAGE_INDEX.renderPage());

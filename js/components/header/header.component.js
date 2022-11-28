@@ -17,9 +17,10 @@ export const renderView = () => {
 
     const headerLogo = LAZR.DOM.createImgElement('headerLogo', 'header-logo', './medias/images/logo-white.svg', 'lazr logo');
     LAZR.CSS.applyColorFilterOnElement(headerLogo, LAZR.CSS.getCssRootVariableValue('--on-primary'));
-    
     headerIndexLink.appendChild(headerLogo);
+
     header.appendChild(headerIndexLink);
+    
     if (LAZR.BREAKPOINTS.isPhone || LAZR.BREAKPOINTS.isTablet) {
         BURGER_MENU.renderView();
     } else {

@@ -1,19 +1,19 @@
 import * as LAZR from '../../../lazR/lazR.js';
 
-export const renderPage = () => {
-
-    const renderCreditsForIterations = (iterations) => {
-        let str = '';
-        for (let index = 0; index < iterations; index++) {
-            str += `
-            <span class="about-credit">
-            <b>Category n°${index + 2}</b><br>
-            Lorem ipsum<br>
-            <a>Link to ressource</a>
-            </span>`
-        }
-        return str;
+const renderCreditsForIterations = (iterations) => {
+    let str = '';
+    for (let index = 0; index < iterations; index++) {
+        str += `
+        <span class="about-credit">
+        <b>Category n°${index + 2}</b><br>
+        Lorem ipsum<br>
+        <a>Link to ressource</a>
+        </span>`
     }
+    return str;
+}
+
+export const renderPage = () => {    
 
     LAZR.DOM.setHTMLTitle('About');
 
