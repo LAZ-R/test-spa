@@ -24,7 +24,7 @@ const handleCheck = (id) => {
                             music.pause();
                         }
                     }
-                } 
+                }
             }
         });
     });
@@ -39,8 +39,8 @@ window.handleCheck = handleCheck;
 const renderSettingsGroup = (settingsGroup) => {
     let str = `
     <div id="settingsGroup${settingsGroup.id}" class="settings-group">
-        <span class="settings-group-name">${settingsGroup.name}</span>`
-        
+        <span class="settings-group-name">${settingsGroup.name}</span>`;
+
     settingsGroup.settings.forEach(setting => {
         str += `
         <div class="setting-tile">
@@ -54,7 +54,7 @@ const renderSettingsGroup = (settingsGroup) => {
                     <span class="slider round"></span>
                 </label>
             </div>    
-        </div>`
+        </div>`;
     });
     str += `</div>`;
     return str;
@@ -68,7 +68,7 @@ export const renderPage = () => {
     const page = LAZR.DOM.createElement('div', 'settingsPage', 'page', `
         <h1 style="padding-left: var(--horizontal-padding)">Settings</h1>`);
         user.settings.forEach(settingsGroup => {
-        if ((settingsGroup.name == 'Advanced' && LAZR.STORAGE.isUserDev()) || settingsGroup.name != 'Advanced') {
+        if ((settingsGroup.id == 'advanced' && LAZR.STORAGE.isUserDev()) || settingsGroup.id != 'advanced') {
             page.appendChild(LAZR.DOM.getElementFromHTMLString(renderSettingsGroup(settingsGroup)));
         }
     });

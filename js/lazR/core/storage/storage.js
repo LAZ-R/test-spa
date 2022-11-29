@@ -7,7 +7,7 @@ if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
         isDev: false,
         settings: [
             {
-                id: 1,
+                id: 'screen',
                 name: 'Screen',
                 settings: [
                     {
@@ -18,7 +18,7 @@ if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
                 ]
             },
             {
-                id: 2,
+                id: 'audio',
                 name: 'Audio',
                 settings: [
                     {
@@ -29,7 +29,7 @@ if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
                 ]
             },
             {
-                id: 3,
+                id: 'advanced',
                 name: 'Advanced',
                 settings: [
                     {
