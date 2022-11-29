@@ -16,7 +16,7 @@ export const renderPage = () => {
     for (let n = 0; n < 10; n++) {
         page.appendChild(
             LAZR.DOM.createElement('h2', '', '', `
-                Subtitle n°${n + 1}`));
+                Sous titre ${n + 1}`));
         page.appendChild(
                 LAZR.DOM.createElement('p', '', '', `
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac nulla nisl. Praesent nec venenatis leo.

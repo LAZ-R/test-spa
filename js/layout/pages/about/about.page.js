@@ -5,9 +5,9 @@ const renderCreditsForIterations = (iterations) => {
     for (let index = 0; index < iterations; index++) {
         str += `
         <span class="about-credit">
-        <b>Category n°${index + 2}</b><br>
+        <b>Catégorie n°${index + 2}</b><br>
         Lorem ipsum<br>
-        <a>Link to ressource</a>
+        <a>Lien vers la ressource</a>
         </span>`
     }
     return str;
@@ -24,10 +24,10 @@ export const renderPage = () => {
             <span class="about-sub-category about-app-name">${LAZR.APP_DATA.getAppName()}</span>
             <span class="about-sub-category about-app-version">v${LAZR.APP_DATA.getAppVersionNumber()}</span>
         </div>
-        <span class="about-credits-label">Credits</span>
+        <span class="about-credits-label">Crédits</span>
         <div class="about-sub-category about-credits">
             <span class="about-credit">
-                <b>Icon pack</b><br>
+                <b>Pack d'icônes</b><br>
                 FontAwsome<br>
                 <a href="https://fontawesome.com/">https://fontawesome.com/</a>
             </span>
@@ -38,12 +38,14 @@ export const renderPage = () => {
     const middlePart = LAZR.DOM.createElement('div', 'middlePart', 'about-category middle-part', `
         <div class="about-sub-category about-warning">
             <div><img src="./medias/images/font-awsome/circle-exclamation-solid.svg" alt="exclamation point" style="filter :${LAZR.CSS.getRootColorFilterValue('--gray-80')};"/></div>
-            <span>Warning</span>
+            <span>Attention</span>
             <div><img src="./medias/images/font-awsome/circle-exclamation-solid.svg" alt="exclamation point" style="filter :${LAZR.CSS.getRootColorFilterValue('--gray-80')};"/></div>
         </div>
         <div class="about-sub-category about-warning-text">
-            <span>It is important to notice than this app uses your device local storage to persist data.<br>
-            All this app data will be lost if you clean your cache.</span>
+            <span>
+                Cette application utilise le stockage local de votre appareil pour sauvegarder ses données.<br>
+                Toutes les données de cette application seront perdues si vous nettoyez le cache de votre navigateur / appareil.
+            </span>
         </div>`);
     page.appendChild(middlePart);
 

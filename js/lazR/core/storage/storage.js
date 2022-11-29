@@ -8,11 +8,11 @@ if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
         settings: [
             {
                 id: 'screen',
-                name: 'Screen',
+                name: 'Écran',
                 settings: [
                     {
                         id: 'keepScreenAwake',
-                        name: 'Keep screen awake',
+                        name: 'Garder l\'écran allumé',
                         isActive: true
                     }
                 ]
@@ -23,18 +23,18 @@ if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
                 settings: [
                     {
                         id: 'menuMusic',
-                        name: 'Music (menu)',
+                        name: 'Musique (menu)',
                         isActive: true
                     }
                 ]
             },
             {
                 id: 'advanced',
-                name: 'Advanced',
+                name: 'Avancé',
                 settings: [
                     {
                         id: 'jsonWizard',
-                        name: 'Enable JSON Wizard',
+                        name: 'Activer JSON Wizard', 
                         isActive: false
                     }
                 ]

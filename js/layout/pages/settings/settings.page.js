@@ -63,10 +63,11 @@ const renderSettingsGroup = (settingsGroup) => {
 
 export const renderPage = () => {
     let user = LAZR.STORAGE.getUser();
-    LAZR.DOM.setHTMLTitle('Settings');
+    const pageTitle = 'Paramètres';
+    LAZR.DOM.setHTMLTitle(pageTitle);
 
     const page = LAZR.DOM.createElement('div', 'settingsPage', 'page', `
-        <h1 style="padding-left: var(--horizontal-padding)">Settings</h1>`);
+        <h1 style="padding-left: var(--horizontal-padding)">${pageTitle}</h1>`);
         user.settings.forEach(settingsGroup => {
         if ((settingsGroup.id == 'advanced' && LAZR.STORAGE.isUserDev()) || settingsGroup.id != 'advanced') {
             page.appendChild(LAZR.DOM.getElementFromHTMLString(renderSettingsGroup(settingsGroup)));

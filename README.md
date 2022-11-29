@@ -1,16 +1,13 @@
 # LAZR Template
 
-This is a template for a LAZR JavaScript ES6 static PWA with modules, hosted on GitHub Pages
+Template pour une application web statique  
+- Javascript ES6 Vanilla (avec modules)
+- PWA
+- SPA
+- avec librairie LAZR
 
-## Demo
+hébergée sur GitHub Pages.
 
-You can see a demo of this repository [here](https://laz-r.github.io/test-spa) hosted on GitHub Pages.
+## Démo
 
-## Browser Compatibility
-
-Tested in the following browsers:
-
-* Chrome 67 (Windows and Android)
-* Firefox 60
-* Safari 11
-* Edge 42
+Une démo de ce repo est disponible [ici](https://laz-r.github.io/test-spa) (hébergée sur GitHub Pages).

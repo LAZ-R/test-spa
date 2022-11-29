@@ -18,17 +18,17 @@ export const handleSubmitData = () => {
         JSON.parse(sumbittedDataString);
         isParsable = true;
     } catch (error) {
-        window.alert('Your data are not JSON parsable :(')
+        window.alert('Vos données ne sont pas formattables en JSON :(')
     }
     if (isParsable) {
         let isFormattedProperly = false;
         const newUser = JSON.parse(sumbittedDataString.trim());
-        console.log('is formatted properly :)');
+        //console.log('is formatted properly :)');
         try {
             newUser.settings[0].settings[0].id == 'keepScreenAwake'
             isFormattedProperly = true;
         } catch (error) {
-            window.alert('Your JSON is not formatted properly for this application');
+            window.alert(`Votre JSON n'est pas formatté correctement pour fonctionner avec cette apllication.`);
         }
         if (isFormattedProperly) {
             LAZR.STORAGE.setUser(newUser);
@@ -49,12 +49,12 @@ export const renderPage = () => {
 
     switch (dataOption) {
         case 'export':
-            LAZR.DOM.setHTMLTitle('Export Data');
+            LAZR.DOM.setHTMLTitle('Export de données');
             const exportTopPart = LAZR.DOM.createElement('div', 'exportTopPart', 'json-wizard-category json-wizard-export-top-part', `
                 <div class="json-wizard-intro-area">
-                    <h1>Export data</h1>
+                    <h1>Export de données</h1>
                     <span>
-                        Here you can export your local storage data if you need to save it for later (browser cache cleaning, browser or device update, etc).
+                        Ici vous pouvez exporter vos données au format JSON pour les garder pour plus tard (nettoyage du cache, mise à jour d'appareil, changement d'appareil, etc.)
                     </span>
                 </div>`);
             page.appendChild(exportTopPart);
@@ -65,37 +65,37 @@ export const renderPage = () => {
 
             const exportBottomPart = LAZR.DOM.createElement('div', 'exportBottomPart', 'json-wizard-category json-wizard-export-bottom-part', `  
                 <button id="copyClipboardButton" class="primary-button json-wizard-button" onclick="copyToClipboard()">
-                    <span class="json-wizard-category-title">Copy to clipboard</span>
+                    <span class="json-wizard-category-title">Copier dans le presse-papier</span>
                     <img class="json-wizard-category-icon" src="./medias/images/font-awsome/clipboard-regular.svg" alt="an arrow to the right comming into a rectangle" style="filter: ${onPrimaryFilter};" />
                 </button>`);
             page.appendChild(exportBottomPart);
             break;
         case 'import':
-            LAZR.DOM.setHTMLTitle('Import Data');
+            LAZR.DOM.setHTMLTitle('Importation de données');
             const importTopPart = LAZR.DOM.createElement('div', 'importTopPart', 'json-wizard-category json-wizard-import-top-part', `
                 <div class="json-wizard-intro-area">
-                    <h1>Import data</h1>
+                    <h1>Importation de données</h1>
                     <span>
                         <span style="color: var(--lazr-red)">
-                        <b>This feature is for advanced users only.</b><br>
-                        <b>Use it at your own risk.</b><br>
+                        <b>Cette fonctionalité est réservée aux utilisateurs expérimentés.</b><br>
+                        <b>Utilisez la à vos risques et périls.</b><br>
                         <br>
-                        Here you can paste a stringified JSON to be used as your local storage data.
-                        Beware that it needs to be formated <b>exactly</b> as the exported data.<br>
+                        Ici vous pouvez coller un JSON sous forme de chaîne de caractères qui sera utilisé comme base de données locale, le but principal étant la restauration de backup préalablement exporté.<br>
+                        Attention, celui-ci doit être formatté <b>exactement</b> comme celui exporté.<br>
                         <br>
-                        <b>This app WILL crash if any data is not formatted properly.</b>
+                        <b>Cette application VA planter si la moindre donnée n'est pas correctement formattée.</b>
                         </span>
                     </span>
                 </div>`);
             page.appendChild(importTopPart);
 
             const importMiddlePart = LAZR.DOM.createElement('div', 'importMiddlePart', 'json-wizard-category json-wizard-import-middle-part', `
-                <textarea id="importTextarea" class="export-textarea" placeholder="paste here"></textarea>`);
+                <textarea id="importTextarea" class="export-textarea" placeholder="Coller ici"></textarea>`);
             page.appendChild(importMiddlePart);
 
             const importBottomPart = LAZR.DOM.createElement('div', 'importBottomPart', 'json-wizard-category json-wizard-import-bottom-part', `  
                 <button id="submitDataButton" class="warning-button json-wizard-button" onclick="handleSubmitData()">
-                    <span>Submit data</span>
+                    <span>Importer les données</span>
                 </button>`);
             page.appendChild(importBottomPart);
             break;
@@ -105,7 +105,7 @@ export const renderPage = () => {
                 <div class="json-wizard-intro-area">
                     <h1>JSON Wizard</h1>
                     <span>
-                        Here you can export your local storage data, or import external data into it.
+                        Ici vous pouvez exporter les données issues de votre stockage local, ou y importer des données externes.
                     </span>
                     <div class="json-wizard-icon-area">
                         <img class="json-wizard-icon" src="./medias/images/font-awsome/wand-magic-sparkles-solid.svg" alt="a magic wand with sparkles" style="filter: ${primaryFilter};" />
@@ -115,15 +115,15 @@ export const renderPage = () => {
 
             const middlePart = LAZR.DOM.createElement('div', 'middlePart', 'json-wizard-category json-wizard-middle-part', `
                 <button class="primary-button json-wizard-button" onclick="redirectToJSONWSubPage('export')">
-                    <span class="json-wizard-category-title">Export local storage data</span>
-                    <img class="json-wizard-category-icon" src="./medias/images/font-awsome/right-from-bracket-solid.svg" alt="an arrow to the right comming from a rectangle" style="filter: ${onPrimaryFilter};" />
+                    <span class="json-wizard-category-title">Export des données</span>
+                    <img class="json-wizard-category-icon" src="./medias/images/font-awsome/right-from-bracket-solid.svg" alt="une flèche vers la droite qui sort d'un rectangle" style="filter: ${onPrimaryFilter};" />
                 </button>`);
             page.appendChild(middlePart);
 
             const bottomPart = LAZR.DOM.createElement('div', 'bottomPart', 'json-wizard-category json-wizard-bottom-part', `  
                 <button class="primary-button json-wizard-button" onclick="redirectToJSONWSubPage('import')">
-                    <span class="json-wizard-category-title">Import data to local storage</span>
-                    <img class="json-wizard-category-icon" src="./medias/images/font-awsome/right-to-bracket-solid.svg" alt="an arrow to the right comming into a rectangle" style="filter: ${onPrimaryFilter};" />
+                    <span class="json-wizard-category-title">Importation des données</span>
+                    <img class="json-wizard-category-icon" src="./medias/images/font-awsome/right-to-bracket-solid.svg" alt="une flèche vers la droite qui rentre dans un rectangle" style="filter: ${onPrimaryFilter};" />
                 </button>`);
             page.appendChild(bottomPart);
             break;

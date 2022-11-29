@@ -49,7 +49,7 @@ export const closeMenu = () => {
 const getBurgerMenuInnerHTML = () => {
     return `
     <div class="burger-menu-pages">
-        <a onclick="burgerNavigateTo('./')" class="burger-menu-page">Home</a>
+        <a onclick="burgerNavigateTo('./')" class="burger-menu-page">Accueil</a>
     </div>
     <div class="burger-menu-bottom">
         <div class="burger-menu-utils">   
@@ -64,13 +64,13 @@ const getBurgerMenuInnerHTML = () => {
                 <div class="util-icon-area">
                     <img class="util-icon" src="./medias/images/font-awsome/gear-solid.svg" alt="gear" style="filter: ${LAZR.CSS.getRootColorFilterValue('--on-primary')}" />
                 </div>                    
-                <span>Settings</span>
+                <span>Paramètres</span>
             </a>
             <a onclick="burgerNavigateTo('./?page=about')" class="burger-menu-page burger-menu-util">
                 <div class="util-icon-area">
                     <img class="util-icon" src="./medias/images/font-awsome/circle-info-solid.svg" alt="information mark" style="filter: ${LAZR.CSS.getRootColorFilterValue('--on-primary')}" />
                 </div>                    
-                <span>About</span>
+                <span>À propos</span>
             </a>
         </div>
         <div class="burger-menu-app-data">
@@ -97,12 +97,12 @@ const handleVersionNumberClick = () => {
             let user = LAZR.STORAGE.getUser();
             user.isDev = true;
             LAZR.STORAGE.setUser(user);
-            window.alert('You now have access to the "Advanced" settings section');
+            window.alert('Vous avez désormais accès à la section "Avancé" des paramètres.');
         } else {
             let user = LAZR.STORAGE.getUser();
             user.isDev = false;
             LAZR.STORAGE.setUser(user);
-            window.alert('You now lose access to the "Advanced" settings section');
+            window.alert('Vous perdez accès à la section "Avancé" des paramètres.');
         }
         closeMenu();
         LAZR.ROUTER.navigateTo(`./?page=settings`);
