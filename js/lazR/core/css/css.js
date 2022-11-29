@@ -17,3 +17,7 @@ export const getCssRootVariableValue = (variableName) => {
     }
     return value;
 }
+
+export const getRootColorFilterValue = (rootVariableName) => {
+    return `${getFilterStringForHexValue(getCssRootVariableValue(rootVariableName))}`;
+}

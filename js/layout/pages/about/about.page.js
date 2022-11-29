@@ -13,11 +13,9 @@ const renderCreditsForIterations = (iterations) => {
     return str;
 }
 
-export const renderPage = () => {    
+export const renderPage = () => {
 
     LAZR.DOM.setHTMLTitle('About');
-
-    const gray80Filter = LAZR.CSS.getFilterStringForHexValue(LAZR.CSS.getCssRootVariableValue('--gray-80'));
 
     const page = LAZR.DOM.createElement('div', 'aboutPage', 'page', '');
     
@@ -33,15 +31,15 @@ export const renderPage = () => {
                 FontAwsome<br>
                 <a href="https://fontawesome.com/">https://fontawesome.com/</a>
             </span>
-            ${renderCreditsForIterations(10)}
+            ${renderCreditsForIterations(6)}
         </div>`);
     page.appendChild(topPart);
 
     const middlePart = LAZR.DOM.createElement('div', 'middlePart', 'about-category middle-part', `
         <div class="about-sub-category about-warning">
-            <div><img src="./medias/images/font-awsome/circle-exclamation-solid.svg" alt="exclamation point" style="filter : ${gray80Filter};"/></div>
+            <div><img src="./medias/images/font-awsome/circle-exclamation-solid.svg" alt="exclamation point" style="filter :${LAZR.CSS.getRootColorFilterValue('--gray-80')};"/></div>
             <span>Warning</span>
-            <div><img src="./medias/images/font-awsome/circle-exclamation-solid.svg" alt="exclamation point" style="filter : ${gray80Filter};"/></div>
+            <div><img src="./medias/images/font-awsome/circle-exclamation-solid.svg" alt="exclamation point" style="filter :${LAZR.CSS.getRootColorFilterValue('--gray-80')};"/></div>
         </div>
         <div class="about-sub-category about-warning-text">
             <span>It is important to notice than this app uses your device local storage to persist data.<br>

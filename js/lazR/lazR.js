@@ -17,7 +17,8 @@ export const APP_DATA = {
 export const CSS = {
     getCssRootVariableValue: (variableName) => CORE_CSS.getCssRootVariableValue(variableName),
     getFilterStringForHexValue: (hexValue) => CORE_CSS.getFilterStringForHexValue(hexValue),
-    applyColorFilterOnElement: (element, hexValue) => CORE_CSS.applyColorFilterOnElement(element,hexValue)
+    applyColorFilterOnElement: (element, hexValue) => CORE_CSS.applyColorFilterOnElement(element,hexValue),
+    getRootColorFilterValue: (rootVariableName) => CORE_CSS.getRootColorFilterValue(rootVariableName)
 }
 
 // DOM ------------------------------------------------------------------------
