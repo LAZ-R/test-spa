@@ -1,45 +1,13 @@
+import { DEFAULT_SETTINGS } from "../../../app-default-settings.js";
+
 const STORAGE = localStorage;
-const appShortName = 'testSPA';
+const appShortName = `testSPA`;
 
 if (STORAGE.getItem(`${appShortName}FirstTime`) === null) {
     STORAGE.setItem(`${appShortName}FirstTime`, '0');
     let userTMP = {
         isDev: false,
-        settings: [
-            {
-                id: 'screen',
-                name: 'Écran',
-                settings: [
-                    {
-                        id: 'keepScreenAwake',
-                        name: 'Garder l\'écran allumé',
-                        isActive: true
-                    }
-                ]
-            },
-            {
-                id: 'audio',
-                name: 'Audio',
-                settings: [
-                    {
-                        id: 'menuMusic',
-                        name: 'Musique (menu)',
-                        isActive: true
-                    }
-                ]
-            },
-            {
-                id: 'advanced',
-                name: 'Avancé',
-                settings: [
-                    {
-                        id: 'jsonWizard',
-                        name: 'Activer JSON Wizard', 
-                        isActive: false
-                    }
-                ]
-            }
-        ]
+        settings: DEFAULT_SETTINGS
     };
     STORAGE.setItem(`${appShortName}User`, JSON.stringify(userTMP));
 }
