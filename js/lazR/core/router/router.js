@@ -2,13 +2,19 @@ import * as APP_ROUTER from '../../../app-router.js';
 
 const getPageRegex = /(?<=page=)\w+/g;
 
-document.onmouseover = function() {
-    //User's mouse is inside the page.
+/**
+ * Changement d'état du "potentiel de clic"
+ */
+document.onmouseover = () => {
+    //le pointeur de l'utilisateur est dans la page.
     window.innerDocClick = true;
 }
 
-document.onmouseleave = function() {
-    //User's mouse has left the page.
+/**
+ * Changement d'état du "potentiel de clic"
+ */
+document.onmouseleave = () => {
+    //le pointeur de l'utilisateur a quitté la page.
     window.innerDocClick = false;
 }
 
@@ -19,34 +25,47 @@ export const getStack = () => {
     return stack;
 }
 
+/**
+ * Méthode utilisée pour naviguer au sein de l'application
+ * @param {string} URL 
+ */
 export const navigateTo = (URL) => {
-    if (!((window.location.hash.length == 0 && URL == './') || window.location.hash == '#' + URL)) {
+    if ( // Si
+        !( // N'est pas
+            (window.location.hash.length == 0 && URL == './') // le hash a une longueur de 0 et l'URL de navigation vaut './'
+            || window.location.hash == '#' + URL // l'URL ne navigation est l'URL actuelle
+        )
+    ) {
         window.innerDocClick = true;
         historyArray.push(window.location.hash);
-        window.location.hash = URL;
-        // the rest happens on the onHashChange function
+        window.location.hash = URL; // changement d'URL effectué
+        // le reste se déroule sur la fonction onHashChange()
     }
 
-    // else user is trying to navigate to the page he is already on.
+    // Sinon l'utilisateur essaye de naviguer su la page sur laquelle il se trouve
 }
 window.navigateTo = navigateTo;
 
-window.onhashchange = function() {
+/**
+ * Méthode automatique, déclenchée au changement du hash de l'URL 
+ */
+window.onhashchange = () => {
 
+    // Navigation interne, toujours en avant
     if (window.innerDocClick) {
-        // App navigation, always forward
 
-        window.innerDocClick = false;
-        let pageArray = window.location.hash.match(getPageRegex);
-        if (pageArray != null) {
+        window.innerDocClick = false; // pk ?
+
+        let pageArray = window.location.hash.match(getPageRegex); // on récupère l'URL
+        if (pageArray != null) { // si l'URL n'est pas nulle
             const page = pageArray[0];
-            navigateForward(page);
+            navigateForward(page); // on navigue vers cette page
         } else {
-            navigateForward(null);
+            navigateForward(null); // sinon on navigue vers null
         } 
 
+    // Navigation du navigateur
     } else {
-        // Browser navigation, always backwards
 
         if (window.location.hash == '') {
             // BACK TO ROOT STACK
